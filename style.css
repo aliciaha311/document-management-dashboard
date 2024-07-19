@@ -1,5 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    margin-left: 30px;
 }
 
 table {
@@ -16,7 +17,53 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
-#user-id-div {
-    overflow: hidden;
+#user-info {
     display: flex;
+    align-items: center;;
+}
+
+#user-name {
+    font-size: 60px;
+    margin-bottom: -10px;
+}
+
+#user-email {
+    font-size: 30px;
+    font-weight: normal;
+}
+
+#user-role {
+    font-size: 5vh;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    
+}
+
+#user-id-label {
+    font-size: 20px;
+}
+
+#role-and-id{
+    margin-left: 72vw;
+    text-align: right;
+    
+}
+
+hr {
+    margin-left: -20px;
+}
+
+table {
+    font-size: 20px;
+}
+
+
+#stats-table{
+    margin: 30px auto 30px 0px;
+}
+
+select {
+    font-size: 20px;
+    margin: 5px 5px 0 5px;
+    border-radius: 5px;
 }

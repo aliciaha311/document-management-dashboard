@@ -9,39 +9,54 @@
     </head>
     <body>
         <section id="user-info">
-            <h1 id="user-name">Name Placeholder</h1>
-            <h3 id="user-email">name@email.com</h3>
-            <h3 id="user-role">Current Role</h3>
-            <p>User ID: <span id="user-id">--</span></p>
+            <div id="name-and-email">
+                <h1 id="user-name"></h1>
+                <h3 id="user-email"></h3>
+            </div>
+            <div id="role-and-id">
+                <h2 id="user-role"></h2>
+                <p id="user-id-label">User ID: <span id="user-id"></span></p>
+            </div>
         </section>
 
-        <section id="tables">
-            <table id="documents-table"></table>
-            <table id="stats-table">
-                <tr>
-                    <th>Total Documents</th>
-                    <th id="total-documents"></th>
-                </tr>
-                <tr>
-                    <th>In Draft</th>
-                    <th id="in-draft"></th>
-                    
-                </tr>
-                <tr>
-                    <th>In Review</th>
-                    <th id="in-review"></th>
-                </tr>
-                <tr>
-                    <th>Pending Approval</th>
-                    <th id="pending-approval"></th>                    
-                </tr>
-                <tr>
-                    <th>Complete</th>
-                    <th id="complete"></th>
-                </tr>
-            </table>
-        </section>
+        <hr>
 
-        <script src="./DocumentManagementApplication.js"></script>
+        <h1>Document Information</h1>
+
+        <table id="stats-table">
+            <tr>
+                <th>Total Documents</th>
+                <th id="total-documents"></th>
+            </tr>
+            <tr>
+                <th>In Draft</th>
+                <th id="in-draft"></th>
+                
+            </tr>
+            <tr>
+                <th>In Review</th>
+                <th id="in-review"></th>
+            </tr>
+            <tr>
+                <th>Pending Approval</th>
+                <th id="pending-approval"></th>                    
+            </tr>
+            <tr>
+                <th>Complete</th>
+                <th id="complete"></th>
+            </tr>
+        </table>
+        <table id="documents-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Document Name</th>
+                    <th>Status</th>
+                    <th>Last Edited</th>
+                </tr>
+            </thead>
+            <tbody id="documents-table-body"></tbody>
+        </table>
+        <script src="./document-manager-app.js"></script>
     </body>
 </html>
