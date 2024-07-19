@@ -1,5 +1,5 @@
 # Document Management  Application
-This is my submission for the Junior Software Developer Take-Home Test. This project demonstrates how to **build a mock RESTful API** using Python and Flask, and includes endpoints for retrieving user data, statistics, and documents. This project also demonstrates vanilla JS to create a **front-end application** to display all information provided by the API.
+This is my submission for the Junior Software Developer Take-Home Test. This project demonstrates my attempt on **building a mock RESTful API** using Python and Flask, and includes endpoints for retrieving user data, statistics, and documents. This project also demonstrates vanilla JS to create a **front-end application** to display all information provided by the API.
 
 ## Table of Contents
 * [Mock API](#mock-restful-api)
