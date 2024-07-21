@@ -1,8 +1,10 @@
 # Document Management  Application
-This is my submission for the Junior Software Developer Take-Home Test. This project demonstrates my attempt on **building a mock RESTful API** using Python and Flask, and includes endpoints for retrieving user data, statistics, and documents. This project also demonstrates vanilla JS to create a **front-end application** to display all information provided by the API.
+This is my submission for the Junior Software Developer Take-Home Test. This project demonstrates how to **build a mock RESTful API** using Python and Flask, and includes endpoints for retrieving user data, statistics, and documents. This project also demonstrates vanilla JS to create a **front-end application** to display all information provided by the API.
+
+Last updated: `July 20th, 2024`
 
 ## Table of Contents
-* [Mock API](#mock-restful-api)
+* [Mock RESTful API](#mock-restful-api)
 * [Front-End Application](#front-end-application)
 * [Known Issues and Testing Challenges](#known-issues-and-testing-challenges)
     * [Testing Challenges](#testing-challenges)
@@ -11,7 +13,7 @@ This is my submission for the Junior Software Developer Take-Home Test. This pro
 
 ### Installation
 1. Clone the repository: https://github.com/aliciaha311/document-management-dashboard
-2. Install dependencies (`npm install`, other dependencies are specified in their respective sections).
+2. Install dependencies.
 
 ## Mock RESTful API
 ### Prerequisites
@@ -33,12 +35,14 @@ CORS origin is configured to allow requests from `http://127.0.0.1:3000`.
 - `/stats` (**GET**): returns overall document **statistics** as a JSON file.
 - `/documents` (**GET**): returns the list of **documents** as a JSON file.
 - `/documents/{id}` (**PUT**): updates a document's **status** (valid statuses: In Draft, In Review, Pending Approval, Complete).
+#### Testing
+- To run the testing, run `python app_test.py` into the terminal.
 
 ### File Structure
 - `app.py`: Main application file
 - `jr_data.json`: JSON data file for user, stats, and documents.
-#### Testing (`__test__`)
-- `__test__/app_test.py`: Testing for the mock API.
+#### Testing
+- `app_test.py`: Testing for the mock API.
 
 ### Other Notes
 - The basic testing is under the assumption that the jr_data.json is used every time.
@@ -54,16 +58,12 @@ Ensure the mock API (`http://127.0.0.1:5000`) is running before starting the app
 ### How to Use
 Go to `http://127.0.0.1:3000` to view the website.
 #### Testing
-- Ensure that you have Node.js and npm installed on your machine: `npm install`.
-- To run the testing, input `npm test` to the terminal.
+- To run the testing, run `node document-manager-app.js test` into the terminal.
 
-### File Structure
-- `document-management-app.js`: Main application file that communicates with the API.
+### File Structures
+- `document-management-app.js`: Main application file that communicates with the API. This file also contains the front-end testing via the `test()` function.
 - `index.html`: Provides the structure for displaying user information, statistics, and documents dynamically fetched from the API from `document-management-app.js`.
 - `style.css`:  Defines styles to reset default browser margins, styles the headers, main sections, and tables.
-#### Testing (`__test__`)
-- `app.test.js`: Testing for the front-end application.
-- `jest-preset.js`, `jest.config.cjs`, `babel.config.cjs`, `setupTests.js` are all files to ensure that Jest is able to function.
 
 ## Known Issues and Testing Challenges
 ### Mock API
@@ -72,14 +72,15 @@ Go to `http://127.0.0.1:3000` to view the website.
 
 ### Front-End Application
 - No issues running the front-end application.
+- No issues running the updated testing.
 
-### Testing Challenges:
-- I was unable to get the front-end tests to run successfully.
+### Testing Challenges: Previous Attempt
+- I was unable to get the front-end tests to run successfully using the Jest framework.
 - The test setup involves importing the HTML file straight from the website, and testing the content of each of the elements, since the HTML directly displays the output of the Javascript application.
 - Despite attempts to implement delays for asynchronous functions, the tests do not execute correctly as attempting to fetch the HTML always returns null.
 - This is my first experience with front-end testing, and I encountered challenges in setting up and executing the tests effectively.
 
-### Testing Approach
+#### Testing Approach
 - The function `fetchHTMLfromWebsite()` aims to fetch the HTML content from the website `http://127.0.0.1:3000`.
 - JSDOM is used to create a simulated browser environment with the now fetched HTML content for each test.
 
