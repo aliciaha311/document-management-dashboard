@@ -1,6 +1,19 @@
 //Defines the base URL for API requests
 const apiUrl = 'http://127.0.0.1:5000';
 
+// Checking if server is on or off to either show error message or content
+function checkServerStatus(online) {
+    console.log("Online = " + online)
+    
+    if (online === true){
+        document.getElementById('content').style.display = 'block';
+        document.getElementById('error-message').style.display = 'none';
+    } else {
+        document.getElementById('content').style.display = 'none';
+        document.getElementById('error-message').style.display = 'block';
+    }
+}
+
 //Function to handle fetch errors and parse JSON response
 async function handleFetchErrors(response, errorMessage) {
     if (!response.ok) {
@@ -26,10 +39,10 @@ async function getUserInfo(){
 
             console.log("User information is received successfully.");
         }
-
         return userInfo;
     } catch (error){
         console.error("Error fetching user information:", error);
+        online = false;
         return null;
     }
 }
@@ -121,18 +134,29 @@ async function changeDocumentStatus(id, status){
 
 //Event listener to fetch initial data when document is available and the DOM content is loaded
 if (typeof document != 'undefined'){
-    document.addEventListener("DOMContentLoaded", function() {
-        getUserInfo();
-        getStatsInfo();
-        getDocumentsInfo();
+    document.addEventListener("DOMContentLoaded", async function() {
+        const userInfo = await getUserInfo();
+        const statsInfo = await getStatsInfo();
+        const documentsInfo = await getDocumentsInfo();
+
+        if (userInfo !== null && statsInfo !== null && documentsInfo !== null){
+            checkServerStatus(true);
+            console.log("Currently true");
+        }
+        else {
+            checkServerStatus(false);
+            console.log("Currently false");
+        }
     });
 }
 
+// Function used by test cases to validate values based on expected data
 function validate(value, expected, name){
     if (value === expected){ console.log(`${name} is correct!`) }
     else { console.error(`Error: ${name} does not match. [Output = ${value}, Expected = ${expected}]`)}
 }
 
+// Function to validate user information
 async function testUserInfo() {
     try {
         console.log("Testing user information...");
@@ -158,6 +182,7 @@ async function testUserInfo() {
     }
 }
 
+// Test case: Fetch and validate statistics information
 async function testStatsInfo() {
     try {
         console.log("Testing statistics information...");
@@ -185,6 +210,8 @@ async function testStatsInfo() {
     }
 }
 
+// Function used by testDocumentsInfo() to validate values based on expected data
+// Has a different console.error message compared to validate() to specify document and specifc part with the error
 function validateDocument(id, value, expected, name){
     if (value !== expected){
         console.error(`Document ${id}'s ${name} does not match. [Output = ${value}, Expected = ${expected}]`);
@@ -193,6 +220,7 @@ function validateDocument(id, value, expected, name){
     return true;
 }
 
+// Test Case: Fetch and validate documents information
 async function testDocumentsInfo() {
     try {
         console.log("Testing documents information...");
@@ -227,6 +255,7 @@ async function testDocumentsInfo() {
     }
 }
 
+// Test Case: change document status and validate updates to status name and statistics
 async function testStatusChange() {
     try {
         console.log("Testing status changes...\n");
@@ -241,13 +270,14 @@ async function testStatusChange() {
         } else {
             console.log('Changing the status of Document 2 from "Pending Approval" to "In Draft":');
 
-            // Testing to see if changing the status made the correct changes
+            // Change document 2's status
             await changeDocumentStatus(2, "In Draft");
 
             // Re-fetch document list and stats
             documentsList = await getDocumentsInfo();
             statsInfo = await getStatsInfo();
 
+            // Validate status change and statistics update
             if (documentsList.find(doc => doc.id == 2).status == "In Draft") {
                 console.log('Status changed to "In Draft" successfully!');
                 change = true;
@@ -262,6 +292,7 @@ async function testStatusChange() {
                 change = false;
             }
 
+            // Revert status change
             if (change === true) {
                 console.log('\nChanging the status of Document 2 back from "In Draft" to "Pending Approval":');
 
@@ -271,6 +302,7 @@ async function testStatusChange() {
                 documentsList = await getDocumentsInfo();
                 statsInfo = await getStatsInfo();
 
+                // Validate that status change and statistics are reverted
                 if (documentsList.find(doc => doc.id == 2).status === "Pending Approval") {
                     console.log('Status changed back to "Pending Approval" successfully!');
                 } else {
@@ -290,6 +322,7 @@ async function testStatusChange() {
     }
 }
 
+// Run all test cases
 async function test() {
     await testUserInfo();
     await testStatsInfo();
@@ -297,7 +330,7 @@ async function test() {
     await testStatusChange();
 }
 
-//node document-management-app.js test to start the test
+// Start testing if the script is run with the 'test' argument
 if (typeof process !== 'undefined' && process.argv.includes('test')) {
     console.log("\nSTART OF TESTING\n")
     test();
