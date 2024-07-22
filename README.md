@@ -6,7 +6,8 @@ Last updated: `July 21st, 2024`
 ## Table of Contents
 * [Mock RESTful API](#mock-restful-api)
 * [Front-End Application](#front-end-application)
-* [Known Issues and Testing Challenges](#testing-challenges)
+* [Test Cases](#test-cases)
+* [Known Issues and Testing Challenges](#known-issues-and-testing-challenges)
 * [Other Notes](#other-notes)
 
 ### Installation
