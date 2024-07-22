@@ -3,6 +3,10 @@ body {
     margin-left: 30px;
 }
 
+#content {
+    display: none;
+}
+
 table {
     border-collapse: collapse;
 }
@@ -64,4 +68,25 @@ select {
     font-size: 20px;
     margin: 5px 5px 0 5px;
     border-radius: 5px;
+}
+
+#error-message{
+    text-align: center;
+    padding: 200px;
+    display: none;
+}
+
+#status-code {
+    font-size: 100px;
+    font-weight: bolder;
+    margin-bottom: 40px;}
+
+.error {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#error-message h3 {
+    margin-top: 50px;
+    font-size: 25px;
 }

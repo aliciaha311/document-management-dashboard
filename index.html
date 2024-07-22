@@ -8,55 +8,66 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <section id="user-info">
-            <div id="name-and-role">
-                <h1 id="user-name">OFFLINE</h1>
-                <h2 id="user-role">OFFLINE</h2>
-            </div>
-            <div id="email-and-id">
-                <h3 id="user-email">OFFLINE</h3>
-                <p id="user-id-label">User ID: <span id="user-id"></span></p>
-            </div>
-        </section>
-
-        <hr>
-
-        <h1>Document Information</h1>
-
-        <table id="stats-table">
-            <tr>
-                <th>Total Documents</th>
-                <th id="total-documents"></th>
-            </tr>
-            <tr>
-                <th>In Draft</th>
-                <th id="in-draft"></th>
-                
-            </tr>
-            <tr>
-                <th>In Review</th>
-                <th id="in-review"></th>
-            </tr>
-            <tr>
-                <th>Pending Approval</th>
-                <th id="pending-approval"></th>                    
-            </tr>
-            <tr>
-                <th>Complete</th>
-                <th id="complete"></th>
-            </tr>
-        </table>
-        <table id="documents-table">
-            <thead>
+        <div id="content">
+            <section id="user-info">
+                <div id="name-and-role">
+                    <h1 id="user-name">OFFLINE</h1>
+                    <h2 id="user-role">OFFLINE</h2>
+                </div>
+                <div id="email-and-id">
+                    <h3 id="user-email">OFFLINE</h3>
+                    <p id="user-id-label">User ID: <span id="user-id">OFFLINE</span></p>
+                </div>
+            </section>
+    
+            <hr>
+    
+            <h1>Document Information</h1>
+    
+            <table id="stats-table">
                 <tr>
-                    <th>ID</th>
-                    <th>Document Name</th>
-                    <th>Status</th>
-                    <th>Last Edited</th>
+                    <th>Total Documents</th>
+                    <th id="total-documents">--</th>
                 </tr>
-            </thead>
-            <tbody id="documents-table-body"></tbody>
-        </table>
+                <tr>
+                    <th>In Draft</th>
+                    <th id="in-draft">--</th>
+                    
+                </tr>
+                <tr>
+                    <th>In Review</th>
+                    <th id="in-review">--</th>
+                </tr>
+                <tr>
+                    <th>Pending Approval</th>
+                    <th id="pending-approval">--</th>                    
+                </tr>
+                <tr>
+                    <th>Complete</th>
+                    <th id="complete">--</th>
+                </tr>
+            </table>
+            <table id="documents-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Document Name</th>
+                        <th>Status</th>
+                        <th>Last Edited</th>
+                    </tr>
+                </thead>
+                <tbody id="documents-table-body"></tbody>
+            </table>
+        </div>
+        <div id="error-message">
+            <h1 id="status-code">503</h1>
+            <h2 class="error">Server is unavailable. Refresh to retry.</h2>
+            <h3>Make sure the server is on before trying again.</h3>
+        </div>
         <script src="./document-manager-app.js"></script>
+        <script>
+            // Check server status when the page loads
+            window.onload = checkServerStatus();
+        </script>
     </body>
 </html>
